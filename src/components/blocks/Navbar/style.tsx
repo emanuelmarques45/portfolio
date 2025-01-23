@@ -20,11 +20,13 @@ const NavItemsDesktop = styled.nav`
 
 const NavItemsMobile = styled.nav<{ $isOpen: boolean }>`
   position: absolute;
-  width: 100vw;
+  width: 100%;
   top: 100%;
   left: 0;
   transform: translateX(${({ $isOpen }) => ($isOpen ? "0%" : "100%")});
-  transition: transform 400ms ease-in;
+  opacity: ${({ $isOpen }) => ($isOpen ? "1" : "0")};
+  transition: transform 400ms ease-in, opacity 400ms ease-in;
+  background-color: ${(props) => props.theme.neutralDark};
 `;
 
 const NavItemsList = styled.ul`

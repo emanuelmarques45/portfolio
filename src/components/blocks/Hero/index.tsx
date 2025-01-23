@@ -14,61 +14,17 @@ import { Rings } from "../../ui/Rings";
 import { Canvas } from "@react-three/fiber";
 import { HeroCamera } from "../../ui/HeroCamera";
 import { Button } from "../../ui/Button";
+import { calculateSizes } from "../../../constants";
 
 function Hero() {
-  const isMobile = useMediaQuery({ maxWidth: sizes.mobileL });
-  const controls = useControls({
-    positionX: {
-      value: 2.5,
-      min: -100,
-      max: 100,
-    },
-    positionY: {
-      value: 2.5,
-      min: -100,
-      max: 100,
-    },
-    positionZ: {
-      value: 2.5,
-      min: -100,
-      max: 100,
-    },
-    rotationX: {
-      value: 2.5,
-      min: -100,
-      max: 100,
-      step: 0.05,
-    },
-    rotationY: {
-      value: 2.5,
-      min: -100,
-      max: 100,
-      step: 0.05,
-    },
-    rotationZ: {
-      value: 2.5,
-      min: -100,
-      max: 100,
-      step: 0.05,
-    },
-    scale: {
-      value: 2.5,
-      min: -100,
-      max: 100,
-      step: 0.05,
-    },
+  const isSmall = useMediaQuery({ maxWidth: sizes.mobileL });
+  const isMobile = useMediaQuery({ maxWidth: sizes.tablet });
+  const isTablet = useMediaQuery({
+    minWidth: sizes.tablet,
+    maxWidth: sizes.laptop,
   });
 
-  // position={[
-  //   controls.positionX,
-  //   controls.positionY,
-  //   controls.positionZ,
-  // ]}
-  // rotation={[
-  //   controls.rotationX,
-  //   controls.rotationY,
-  //   controls.rotationZ,
-  // ]}
+  const positions = calculateSizes(isSmall, isMobile, isTablet);
 
   return (
     <>
@@ -88,19 +44,20 @@ function Hero() {
         <Canvas>
           <Suspense fallback={<CanvasLoader />}>
             <PerspectiveCamera makeDefault position={[0, 0, 30]} />
-            <group scale={0.9}>
-              <Target position={[-11, -8, 0]} />
-              <ReactLogo position={[15, 3, 0]} rotation={[19.35, 1.6, 11.85]} />
-              <Cube position={[9, -5.5, 0]} rotation={[2.5, 2.5, 2.5]} />
-              <Rings position={[-25, 7, 10]} />
-            </group>
             <HeroCamera isMobile={isMobile}>
               <HackerRoom
-                position={[0.25, -5.5, 0]}
-                rotation={[0.2, -Math.PI, 0]}
-                scale={0.07}
+                position={positions.deskPosition}
+                rotation={[0, Math.PI, 0]}
+                scale={positions.deskScale}
               />
             </HeroCamera>
+
+            <group scale={0.9}>
+              <Target position={positions.targetPosition} />
+              <ReactLogo position={positions.reactLogoPosition} />
+              <Cube position={positions.cubePosition} />
+              <Rings position={positions.ringPosition} />
+            </group>
 
             <ambientLight intensity={1} />
             <directionalLight position={[10, 10, 10]} intensity={0.5} />
