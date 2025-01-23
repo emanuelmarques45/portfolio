@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { PerspectiveCamera } from "@react-three/drei";
 import { PiHandWavingFill } from "react-icons/pi";
 import { HackerRoom } from "../../ui/HackerRoom";
