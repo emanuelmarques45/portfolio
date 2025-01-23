@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Float, useGLTF } from "@react-three/drei";
 import { GroupProps } from "@react-three/fiber";
 

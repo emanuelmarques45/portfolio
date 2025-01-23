@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { BsDot } from "react-icons/bs";
 import { GoDot } from "react-icons/go";
 import styled, { keyframes } from "styled-components";

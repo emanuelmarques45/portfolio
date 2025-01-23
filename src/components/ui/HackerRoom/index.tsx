@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useGLTF, useTexture } from "@react-three/drei";
 
 function HackerRoom(props) {

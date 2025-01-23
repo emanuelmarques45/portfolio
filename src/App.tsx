@@ -11,6 +11,7 @@ function App() {
         <Navbar />
         <S.Main>
           <Hero />
+          <About />
         </S.Main>
       </S.Home>
     </>

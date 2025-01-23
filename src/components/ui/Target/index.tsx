@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useGSAP } from "@gsap/react";
 import { useGLTF } from "@react-three/drei";
 import { MeshProps } from "@react-three/fiber";

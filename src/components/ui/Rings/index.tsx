@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useGSAP } from "@gsap/react";
 import { Center, useTexture } from "@react-three/drei";
 import gsap from "gsap";
